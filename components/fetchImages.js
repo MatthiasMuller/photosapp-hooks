@@ -13,15 +13,14 @@ export default async function fetchImages(page, searchquery, amount) {
         );
         console.log("PAG:" + page)
         let responsejson = await response.json();
-        if (responsejson.error === "Rate limit exceeded")
-        {
+        if (responsejson.error === "Rate limit exceeded") {
             console.log("ERROR: Rate limit exceeded")
             return []
         }
-        if (responsejson.status === 400){
+        if (responsejson.status === 400) {
             return []
         }
-        return  responsejson.photos.map((imageData) => (
+        return responsejson.photos.map((imageData) => (
             {
                 "url": imageData.src[Constants.imageSize],
                 "bigurl": imageData.src.original,
